@@ -25,6 +25,8 @@ def clean_text(text):
 
 # ------------------ PAGE DESIGN ------------------
 
+# ------------------ PAGE DESIGN ------------------
+
 st.markdown("""
 <style>
 
@@ -39,8 +41,6 @@ st.markdown("""
     margin: auto;
     padding-top: 2rem;
 }
-</style>
-""", unsafe_allow_html=True)
 
 /* 🫧 Soft Glow Blobs */
 [data-testid="stAppViewContainer"]::before {
