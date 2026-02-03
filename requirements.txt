@@ -3,3 +3,4 @@ scikit-learn
 nltk
 streamlit
 joblib
+altair==4.2.2
