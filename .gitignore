@@ -1,0 +1,22 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Jupyter / temp
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Large raw datasets (optional)
+data.csv
+
+# Model training outputs (optional if large)
+cleaned_data.csv
