@@ -4,6 +4,7 @@ import re
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+st.set_page_config(layout="centered")
 
 # Download resources
 nltk.download('stopwords')
@@ -31,6 +32,15 @@ st.markdown("""
 [data-testid="stAppViewContainer"] {
     background: linear-gradient(135deg, #f3f7ff, #e6f0ff, #f9f0ff);
 }
+
+/* Force card width */
+.block-container {
+    max-width: 700px;
+    margin: auto;
+    padding-top: 2rem;
+}
+</style>
+""", unsafe_allow_html=True)
 
 /* 🫧 Soft Glow Blobs */
 [data-testid="stAppViewContainer"]::before {
