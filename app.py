@@ -4,12 +4,15 @@ import re
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-st.set_page_config(layout="centered")
 
-# Download resources
+# 🧠 Page settings (VERY IMPORTANT)
+st.set_page_config(page_title="Sentiment Analyzer", layout="centered")
+
+# Download NLP resources
 nltk.download('stopwords')
 nltk.download('wordnet')
 
+# Load ML assets
 model = joblib.load("sentiment_model.pkl")
 vectorizer = joblib.load("vectorizer.pkl")
 
@@ -23,9 +26,7 @@ def clean_text(text):
     words = [lemmatizer.lemmatize(w) for w in words if w not in stop_words]
     return " ".join(words)
 
-# ------------------ PAGE DESIGN ------------------
-
-# ------------------ PAGE DESIGN ------------------
+# ------------------ DESIGN (Styling only, not layout) ------------------
 
 st.markdown("""
 <style>
@@ -35,39 +36,9 @@ st.markdown("""
     background: linear-gradient(135deg, #f3f7ff, #e6f0ff, #f9f0ff);
 }
 
-/* 🔥 THIS fixes cloud layout */
-section.main > div {
-    max-width: 720px;
-    margin: auto;
-    padding-top: 2rem;
-}
-
-/* 🫧 Glow blobs */
-[data-testid="stAppViewContainer"]::before {
-    content: "";
-    position: fixed;
-    top: -120px;
-    left: -120px;
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, #d6e4ff, transparent);
-    z-index: 0;
-}
-
-[data-testid="stAppViewContainer"]::after {
-    content: "";
-    position: fixed;
-    bottom: -120px;
-    right: -120px;
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, #f3d1ff, transparent);
-    z-index: 0;
-}
-
-/* Glass card */
+/* Glass card effect */
 [data-testid="stVerticalBlock"] {
-    background: rgba(255,255,255,0.75);
+    background: rgba(255,255,255,0.8);
     padding: 35px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -83,27 +54,35 @@ section.main > div {
     border: none;
 }
 
+.stButton>button:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
 </style>
 """, unsafe_allow_html=True)
 
-# ------------------ APP UI ------------------
+# ------------------ APP CONTENT ------------------
 
-st.markdown("<h1>🛒 Flipkart Review Sentiment Analyzer</h1>", unsafe_allow_html=True)
+container = st.container()
 
-st.write("💬 Enter a product review below and let AI predict the sentiment!")
+with container:
+    st.markdown("<h1 style='text-align:center;'>🛒 Flipkart Review Sentiment Analyzer</h1>", unsafe_allow_html=True)
+    st.write("💬 Enter a product review below and let AI predict the sentiment!")
 
-review = st.text_area("✍️ Your Review Here", height=150)
+    review = st.text_area("✍️ Your Review Here", height=150)
 
-if st.button("🔍 Analyze Sentiment"):
-    if review.strip() == "":
-        st.warning("Please enter a review first!")
-    else:
-        clean = clean_text(review)
-        vec = vectorizer.transform([clean])
-        pred = model.predict(vec)[0]
-
-        if pred == 1:
-            st.success("✨ Positive Review — Customers are happy!")
-            st.balloons()
+    if st.button("🔍 Analyze Sentiment"):
+        if review.strip() == "":
+            st.warning("Please enter a review first!")
         else:
-            st.error("⚠ Negative Review — Improvement needed!")
+            clean = clean_text(review)
+            vec = vectorizer.transform([clean])
+            pred = model.predict(vec)[0]
+
+            if pred == 1:
+                st.success("✨ Positive Review — Customers are happy!")
+                st.balloons()
+            else:
+                st.error("⚠ Negative Review — Improvement needed!")
