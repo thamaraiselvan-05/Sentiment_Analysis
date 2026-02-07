@@ -25,8 +25,6 @@ cleaned_data.csv
 mlruns/
 mlflow.db
 
-# Model files (optional if you don’t want them in repo)
-*.pkl
 
 # Python cache
 __pycache__/
