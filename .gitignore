@@ -20,3 +20,14 @@ data.csv
 
 # Model training outputs (optional if large)
 cleaned_data.csv
+
+# MLflow files
+mlruns/
+mlflow.db
+
+# Model files (optional if you don’t want them in repo)
+*.pkl
+
+# Python cache
+__pycache__/
+*.pyc
